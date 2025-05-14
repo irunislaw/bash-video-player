@@ -1,0 +1,85 @@
+.TH VIDEO_TO_ASCII 1 "Maj 2025" "Wersja 1.0" "Narzędzia Użytkownika"
+.SH NAZWA
+\fBvideo_to_ascii.sh\fR \- Konwertuje plik wideo do animacji ASCII w terminalu.
+.SH SYNOPSIS
+\fBvideo_to_ascii.sh\fR [\-i \fIplik_wideo\fR] [\-r \fIliczba_klatek_na_sekundę\fR]
+[\-w \fIszerokość\fR] [\-h \fIwysokość\fR] [\-t \fIpróg_jasności\fR] [\-c]
+.SH OPIS
+Skrypt \fBvideo_to_ascii.sh\fR przetwarza podany plik wideo, generując z niego
+animację ASCII wyświetlaną w terminalu. Umożliwia dostosowanie rozdzielczości
+wyjściowej, liczby klatek na sekundę oraz progu jasności, który wpływa na
+szczegółowość generowanego obrazu ASCII. Ustawienia można również zapisać do
+pliku konfiguracyjnego.
+.SH OPCJE
+.TP
+\fB\-i\fR \fIplik_wideo\fR
+Wymagana opcja. Określa ścieżkę do pliku wideo, który ma zostać przekonwertowany.
+.TP
+\fB\-r\fR \fIliczba_klatek_na_sekundę\fR
+Opcjonalna opcja. Ustawia liczbę klatek na sekundę (FPS) animacji ASCII.
+Domyślna wartość to 2.
+.TP
+\fB\-w\fR \fIszerokość\fR
+Opcjonalna opcja. Ustawia szerokość wyjściowej animacji ASCII w liczbie znaków.
+Domyślna wartość to 160.
+.TP
+\fB\-h\fR \fIwysokość\fR
+Opcjonalna opcja. Ustawia wysokość wyjściowej animacji ASCII w liczbie znaków.
+Domyślna wartość to 40.
+.TP
+\fB\-t\fR \fIpróg_jasności\fR
+Opcjonalna opcja. Ustawia próg jasności (w zakresie 0-255), poniżej którego
+piksele są reprezentowane przez spację. Wyższe wartości progu powodują, że
+więcej szczegółów jest traconych. Domyślna wartość to 10.
+.TP
+\fB\-c\fR
+Opcjonalna opcja. Zapisuje aktualnie używane ustawienia (w tym podany plik
+wejściowy i opcje) do pliku konfiguracyjnego o nazwie \fBascii_config.txt\fR.
+Przy kolejnym uruchomieniu skryptu bez podawania opcji, zostaną wczytane
+ustawienia z tego pliku.
+.SH PLIKI
+.TP
+\fBascii_config.txt\fR
+Opcjonalny plik konfiguracyjny, w którym przechowywane są ostatnio zapisane
+ustawienia skryptu. Jeśli plik istnieje w tym samym katalogu co skrypt,
+ustawienia zostaną z niego wczytane przy uruchomieniu.
+.SH WYMAGANIA
+.TP
+\fBbash\fR
+.TP
+\fBffmpeg\fR
+do ekstrakcji klatek wideo
+.TP
+\fBImageMagick\fR
+(w szczególności narzędzie \fBconvert\fR do przetwarzania obrazów)
+.SH PRZYKŁADY UŻYCIA
+.TP
+1. Konwersja pliku wideo z domyślnymi ustawieniami:
+.nf
+\fB./video_to_ascii.sh -i moj_film.mp4\fR
+.fi
+.TP
+2. Konwersja z określoną liczbą klatek na sekundę i szerokością:
+.nf
+\fB./video_to_ascii.sh -i inny_film.avi -r 5 -w 80\fR
+.fi
+.TP
+3. Konwersja z niższym progiem jasności i zapisanie ustawień:
+.nf
+\fB./video_to_ascii.sh -i jeszcze_jeden.mkv -t 5 -c\fR
+.fi
+.TP
+4. Uruchomienie skryptu z wczytaniem ustawień z pliku konfiguracyjnego:
+.nf
+\fB./video_to_ascii.sh\fR
+.fi
+.SH UWAGI
+Jakość generowanej animacji ASCII zależy od rozdzielczości wyjściowej (szerokość
+i wysokość) oraz progu jasności. Eksperymentuj z różnymi wartościami, aby
+uzyskać najlepsze rezultaty. Przetwarzanie wideo może zająć trochę czasu, w
+zależności od długości pliku i wybranych ustawień. Upewnij się, że masz
+zainstalowane wymagane programy (ffmpeg i ImageMagick) w swoim systemie.
+.SH AUTOR
+Michał Irek s203747
+.SH DATA
+Maj 2025
